@@ -1,0 +1,8 @@
+{
+  "name": "tesis",
+  "app_id": "448a00b7",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
