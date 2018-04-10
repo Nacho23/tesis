@@ -7,7 +7,12 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>listGodson</ion-title>
+    <ion-title>Lista de Ahijados</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="goToProfile()">
+        <ion-icon name="person"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -16,20 +21,12 @@
 <ion-content padding>
 
   <ion-list>
-    <ion-item>
-      <ion-avatar item-start>
-        <img src="assets/icon/user.png">
-      </ion-avatar>
-      <button ion-button color="dark" clear (click)="openSelection()">Juan Hugo Ruiz Diaz</button>
+    <ion-item *ngFor="let godson of godsonList" (click)="goToGodsonDetails(godson.id)">
+      <h2>{{godson?.firstName}} {{godson?.lastName}}</h2>
+      <p>{{godson?.rut}}</p>
+      <p>{{godson?.email}}</p>
+      <!-- Agregar todos los detalles del ahijado aqui -->
     </ion-item>
-
-    <ion-item>
-      <ion-avatar item-start>
-        <img src="assets/icon/user.png">
-      </ion-avatar>
-      <button ion-button color="dark" clear (click)="openSelection()">Daniela Belen Gomez Swift</button>
-    </ion-item>
-
   </ion-list>
 
 </ion-content>

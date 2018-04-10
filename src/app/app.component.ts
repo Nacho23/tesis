@@ -4,7 +4,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import firebase from 'firebase';
 import { firebaseConfig } from './credentials';
-import { Unsubscribe } from '@firebase/util';
 
 //import { HomePage } from '../pages/home/home';
 import { WelcomePage } from '../pages/welcome/welcome';
@@ -16,6 +15,7 @@ import { ListGodsonPage } from '../pages/list-godson/list-godson';
 
 export class MyApp {
   rootPage:any; //Initial page
+  public userProfile:any;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {

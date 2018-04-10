@@ -1,0 +1,24 @@
+<!--
+  Generated template for the ModalPicturePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Modificar Foto de Perfil</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="closeModalPicture()">Cerrar</button>
+    </ion-buttons> 
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <img src="{{profilePicture}}">
+  <ion-buttons middle>
+    <button ion-button block (click)="takePicture()">Cámara</button>
+    <button ion-button block (click)="getMedia()">Galería</button>
+  </ion-buttons>
+</ion-content>

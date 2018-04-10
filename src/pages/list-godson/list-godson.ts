@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { HomePage } from '../home/home';
+import { GodsonDetailsPage } from '../godson-details/godson-details';
+import { GodsonProvider } from '../../providers/godson/godson';
+import { ProfileProvider } from '../../providers/profile/profile'
 
 /**
  * Generated class for the ListGodsonPage page.
@@ -16,18 +18,36 @@ import { HomePage } from '../home/home';
 })
 export class ListGodsonPage {
 
-  rut = "";
+  public godsonList: Array<any>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, 
+    public godsonProvider:GodsonProvider, public profileProvider: ProfileProvider) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ListGodsonPage');
+    //Filtar por tipo de usuario.. Por ahora los llama a todos
+    this.godsonProvider.getGodsonList().orderByChild('godfatherId').equalTo(this.profileProvider.currentUser.uid).on('value', godsonListSnapshot => {
+      this.godsonList = [];
+      godsonListSnapshot.forEach(snap => {
+        let godsonObject = snap.val();
+        godsonObject.id = snap.key;
+        this.godsonList.push(godsonObject);
+        return false;
+      });
+    });
+  }
+
+  goToGodsonDetails(godsonId): void {
+    this.navCtrl.push(GodsonDetailsPage, { godsonId: godsonId });
   }
 
   openSelection(){
     
-    this.navCtrl.push(HomePage, {}, {animate: false});
+    this.navCtrl.push(GodsonDetailsPage, {}, {animate: false});
+  }
+
+  goToProfile(){
+    this.navCtrl.push("ProfilePage");
   }
 
 }

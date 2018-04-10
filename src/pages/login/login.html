@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>login</ion-title>
+    <ion-title>Ingreso</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -16,44 +16,35 @@
 <ion-content padding>
   <form [formGroup]="loginForm" (submit)="loginUser()" novalidate>
     <ion-item>
-      <ion-label stacked>Email</ion-label>
-      <ion-input formControlName="email" type="email" placeholder="Your email here" 
+      <ion-label stacked>Correo Electrónico</ion-label>
+      <ion-input formControlName="email" type="email" placeholder="Correo Electrónico" 
       [class.invalid]="!loginForm.controls.email.valid && loginForm.controls.email.dirty">
       </ion-input>
     </ion-item>
     <ion-item class="error-message" *ngIf="!loginForm.controls.email.valid && loginForm.controls.email.dirty">
-      <p>Please enter your email address.</p>
+      <p>Ingrese una dirección de correo electrónico.</p>
     </ion-item>
 
     <ion-item>
-      <ion-label stacked>Password</ion-label>
+      <ion-label stacked>Contraseña</ion-label>
       <ion-input formControlName="password" type="password"
-      placeholder="Your password"
+      placeholder="Contraseña"
       [class.invalid]="!loginForm.controls.password.valid && blur">
       </ion-input>
     </ion-item>
     <ion-item class="error-message" *ngIf="!loginForm.controls.password.valid && loginForm.controls.password.dirty">
-      <p>Your password needs more than 6 characters.</p>
+      <p>Mínimo 6 carácteres.</p>
     </ion-item>
 
     <button ion-button block type="submit" [disabled]="!loginForm.valid">
-      Log in
+      Ingresar
     </button>
   </form>
 
-  <button ion-button block clear (click)="goToResetPassword()">I forgot my password :(</button>
+  <button ion-button block clear (click)="goToSignup()">
+    Crrear una cuenta
+  </button>
 
-  <!--<ion-list>
-    <ion-item>
-      <ion-label floating>Usuario</ion-label>
-      <ion-input type="text" value="" [(ngModel)]="user"></ion-input>
-    </ion-item>
+  <button ion-button block clear (click)="goToResetPassword()">Olvidé mi contraseña :(</button>
 
-    <ion-item>
-      <ion-label floating>Contraseña</ion-label>
-      <ion-input type="password" [(ngModel)]="pass"></ion-input>
-    </ion-item>
-
-    <button ion-button block color="primary" (click)="login()">Login</button>
-  </ion-list>-->
 </ion-content>

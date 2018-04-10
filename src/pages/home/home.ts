@@ -11,10 +11,12 @@ export class HomePage {
 
   }
 
-  logout(){
+
+
+  /*logout(){
     //Remove API Token
     const root = this.app.getRootNav();
     root.popToRoot();
-  }
+  }*/
 
 }

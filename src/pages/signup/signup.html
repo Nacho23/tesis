@@ -7,12 +7,38 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>signup</ion-title>
+    <ion-title>Registro</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <form [formGroup]="signupForm" (submit)="signupUser()" novalidate>
+    <ion-item>
+      <ion-label stacked>Correo Electrónico</ion-label>
+      <ion-input formControlName="email" type="email" placeholder="Your email address"
+        [class.invalid]="!signupForm.controls.email.valid && blur">
+      </ion-input>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!signupForm.controls.email.valid
+    && signupForm.controls.email.touched">
+      <p>Por favor ingrese un correo electrónico valido</p>
+    </ion-item>
 
+    <ion-item>
+      <ion-label stacked>Contraseña</ion-label>
+      <ion-input formControlName="password" type="password" placeholder="Your password"
+        [class.invalid]="!signupForm.controls.password.valid && blur">
+      </ion-input>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!signupForm.controls.password.valid  &&
+    signupForm.controls.password.touched">
+      <p>Mínimo 6 carácteres.</p>
+    </ion-item>
+
+    <button ion-button block type="submit" [disabled]="!signupForm.valid">
+      Crear una cuenta
+    </button>
+  </form>
 </ion-content>
