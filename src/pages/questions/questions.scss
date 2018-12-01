@@ -1,4 +1,4 @@
-page-contact {
+page-questions {
     *{
         font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
         font-size: 13px;
@@ -10,9 +10,13 @@ page-contact {
         -moz-background-size: 100%;
         background-size: 100%;
     }
-    
-    .space-top {
-        margin-top: 50px;
+
+    .rounded {
+        border-radius: 50%;
+        width: 90px;
+        height: 90px;
+
+        font-size: 40px;
     }
 
     .navbarLogo {
@@ -36,5 +40,7 @@ page-contact {
     .toolbar-background-md{
         background: transparent;
     }
-}
 
+
+    //Estilo Pie Chart Interfaces
+}

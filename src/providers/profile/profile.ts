@@ -9,14 +9,14 @@ import firebase from 'firebase';
 */
 @Injectable()
 export class ProfileProvider {
-  public userProfile: firebase.database.Reference;
-  public currentUser:firebase.User;
+  public currentProfile: firebase.database.Reference;
+  public currentUser: firebase.User;
 
   constructor() {
-    firebase.auth().onAuthStateChanged( user => {
-      if(user){
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
         this.currentUser = user;
-        this.userProfile = firebase.database().ref(`/userProfile/${user.uid}`);
+        this.currentProfile = firebase.database().ref(`/userProfile/${user.uid}`);
       }
     });
   }
@@ -25,23 +25,51 @@ export class ProfileProvider {
     return firebase.database().ref(`/userProfile/${uid}`);
   }
 
+  //Obtener perfil del usuario actual
+  getUserProfileAsync(): Promise<any> {
+    return new Promise(resolve => {
+      firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+          console.log(user);
+          this.currentUser = user;
+          this.currentProfile = firebase.database().ref('/userProfile/' + user.uid);
+          resolve(this.currentProfile);
+        }
+      });
+    })
+  }
+
+  // Obtener imagen de perfil de usuario
+  getPhotoURL(uid): Promise<any> {
+    return new Promise(resolve => {
+      firebase.storage().ref('profilePictures/' + uid + '.png').getDownloadURL().then((url) => {
+        resolve(url);
+      })
+        .catch(error => {
+          firebase.storage().ref('profilePictures/user.png').getDownloadURL().then((url) => {
+            resolve(url);
+          })
+        })
+    })
+  }
+
   getUserProfile(): firebase.database.Reference {
-    return this.userProfile;
+    return this.currentProfile;
   }
 
   updateName(firstName: string, lastName: string): Promise<any> {
-    return this.userProfile.update({firstName, lastName});
+    return this.currentProfile.update({ firstName, lastName });
   }
 
   updateDOB(birthDate: string): Promise<any> {
-    return this.userProfile.update({ birthDate });
+    return this.currentProfile.update({ birthDate });
   }
 
   updateHometown(homeTown: string): Promise<any> {
-    return this.userProfile.update({homeTown});
+    return this.currentProfile.update({ homeTown });
   }
   updatePhone(phone: number): Promise<any> {
-    return this.userProfile.update({phone});
+    return this.currentProfile.update({ phone });
   }
 
   updateEmail(newEmail: string, password: string): Promise<any> {
@@ -50,15 +78,15 @@ export class ProfileProvider {
       password
     );
     return this.currentUser
-    .reauthenticateWithCredential(credential)
-    .then( user => {
-      this.currentUser.updateEmail(newEmail).then( user => {
-        this.userProfile.update({ email: newEmail });
-      });
-    })
-    .catch( error => {
-      console.error(error);
-    })
+      .reauthenticateWithCredential(credential)
+      .then(user => {
+        this.currentUser.updateEmail(newEmail).then(user => {
+          this.currentProfile.update({ email: newEmail });
+        });
+      })
+      .catch(error => {
+        console.error(error);
+      })
   }
 
   updatePassword(newPassword: string, oldPassword: string): Promise<any> {
@@ -67,19 +95,19 @@ export class ProfileProvider {
       oldPassword
     );
     return this.currentUser
-    .reauthenticateWithCredential(credential)
-    .then( user => {
-      this.currentUser.updatePassword(newPassword).then( user => {
-        console.log('Password Changed')
+      .reauthenticateWithCredential(credential)
+      .then(user => {
+        this.currentUser.updatePassword(newPassword).then(user => {
+          console.log('Password Changed')
+        });
+      })
+      .catch(error => {
+        console.error(error);
       });
-    })
-    .catch( error => {
-      console.error(error);
-    });
   }
 
   updateProfilePicture(profilePictureURL: string): Promise<any> {
-    return this.userProfile.update({profilePictureURL});
+    return this.currentProfile.update({ profilePictureURL });
   }
 
 }

@@ -1,0 +1,39 @@
+page-home-godson {
+    .navbarLogo {
+        width: 50px;
+    }
+
+    ion-title{
+        float: right;
+        margin-top: 6px; 
+
+        font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+        
+    }
+
+    .toolbar-title-md {
+        color: rgb(64, 143, 146);
+    }
+
+    .toolbar-background-md {
+        background: transparent;
+    }
+
+    .icon-card {
+        font-size: 50px;
+        color: rgb(85, 188, 192);        
+    }
+
+    .card-style {
+        background: rgba(1, 92, 77, 0.1);
+        cursor: pointer;
+    }
+
+    .background-img {
+        background-image: url('../../assets/imgs/welcome-background-1.png');
+        -webkit-background-size: 100%;
+        -moz-background-size: 100%;
+        background-size: 100%;
+    }
+    
+}

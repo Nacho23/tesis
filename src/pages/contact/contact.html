@@ -1,18 +1,46 @@
 <ion-header>
+
     <ion-navbar>
+      <img ion-right src="assets/imgs/LOGO1.png" class="navbarLogo" />
       <ion-title>
-        Contact
+        Contacto
       </ion-title>
     </ion-navbar>
+  
   </ion-header>
-  
-  <ion-content>
-    <ion-list>
-      <ion-list-header>Follow us on Twitter</ion-list-header>
-      <ion-item>
-        <ion-icon name="ionic" item-start></ion-icon>
-        @ionicframework
-      </ion-item>
-    </ion-list>
-  </ion-content>
-  
+
+<ion-content padding class="background-img">
+
+  <ion-card class="space-top" style="background: rgb(234,229,224)">
+
+    <form [formGroup]="contactForm" (submit)="sendMessage()">
+      <ion-card>
+        <ion-list>
+          <ion-item>
+            <ion-label floating>Asunto</ion-label>
+            <ion-input formControlName="subject" type="text"></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-card>
+
+      <ion-card>
+        <ion-list>
+          <ion-item>
+            <ion-label floating>Mensaje</ion-label>
+            <ion-textarea formControlName="message" rows="5" maxLength="500"></ion-textarea>
+          </ion-item>
+        </ion-list>
+      </ion-card>
+
+      <button ion-button type="submit" style="background: rgb(111, 191, 194); margin: 12px;">Enviar</button>
+    </form>
+
+  </ion-card>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar text-center>
+    <ion-icon name="md-home" (click)="returnHome()" class="icon-footer"></ion-icon>
+  </ion-toolbar>
+</ion-footer>

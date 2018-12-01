@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-navbar>
+    <img ion-right src="assets/imgs/LOGO1.png" class="navbarLogo" />
+    <ion-title>
+      Ficha Principal
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="background-img">
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-card class="card-style" (click)="page('godsonList');">
+          <ion-card-header text-center>
+            Preguntas
+          </ion-card-header>
+          <ion-card-content text-center class="icon-card">
+            <ion-icon name="md-help"></ion-icon>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card class="card-style" (click)="page('profile');">
+          <ion-card-header text-center>
+            Perfil
+          </ion-card-header>
+          <ion-card-content text-center class="icon-card">
+            <ion-icon name="person"></ion-icon>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-card class="card-style" (click)="page('contact');">
+          <ion-card-header text-center>
+            Contacto
+          </ion-card-header>
+          <ion-card-content text-center class="icon-card">
+            <ion-icon name="mail"></ion-icon>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card class="card-style" (click)="page();">
+          <ion-card-header>
+            Configuraciones
+          </ion-card-header>
+          <ion-card-content text-center class="icon-card">
+            <ion-icon name="cog"></ion-icon>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+</ion-content>

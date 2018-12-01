@@ -1,4 +1,13 @@
 page-login {
+    * {
+        font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif; 
+    }
+
+    ion-title * {
+        margin-top: 20vh;
+        margin-bottom: 10vh;
+    }
+
     form{
         margin-bottom: 32px;
         button{
@@ -34,5 +43,19 @@ page-login {
         .item-inner{
             border-bottom: 0 !important;
         }
+    }
+
+    .text-center {
+        display: block;
+        text-align: center;
+
+        margin-top: 10px;
+    }
+    
+    .btn-login {
+        margin-top: 10vh;
+        padding: 10px;
+
+        border-radius: 5px;
     }
 }

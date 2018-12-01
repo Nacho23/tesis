@@ -32,19 +32,26 @@
     </ion-col>
   </ion-row>
 
-  <ion-card *ngFor="let history of historyList">
-    <ion-card-header><strong>{{history?.title}}</strong><p class="historyCategory">{{history?.category}}</p></ion-card-header>
-    <ion-card-content>
-      <p>{{history?.body}}</p>
-    </ion-card-content>
-  </ion-card>
+  <ion-scroll scrollY="true" style="height:400px;">
+    
+    <ion-card *ngFor="let history of historyList">
+        <!--<ion-item *ngIf="history.category = importante; then style='background-color: red'" >-->
+      <ion-card-header>{{history?.num}}.- <strong>{{history?.title}}</strong><p class="historyCategory">{{history?.category}}</p></ion-card-header>
+      <ion-card-content>
+        <p>{{history?.body}}</p>
+      </ion-card-content>
+    <!--</ion-item>-->
+    </ion-card>
+
+  </ion-scroll>
+
 
 
   <ion-fab right bottom>
     <button ion-fab color="primary"><ion-icon name="add"></ion-icon></button>
     <ion-fab-list side="top">
-      <button ion-fab (click)="goToHistory('important')">!</button>
-      <button ion-fab (click)="goToHistory('normal')">N</button>
+      <button ion-fab (click)="goToHistory('true')">!</button>
+      <button ion-fab (click)="goToHistory('false')">N</button>
     </ion-fab-list>
   </ion-fab>
 </ion-content>

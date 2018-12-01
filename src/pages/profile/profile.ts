@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { Modal, Alert, AlertController, IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { Modal, Alert, AlertController, IonicPage, NavController, NavParams, ModalController, Platform, App } from 'ionic-angular';
 import { ProfileProvider } from '../../providers/profile/profile';
 import { AuthProvider } from '../../providers/auth/auth';
-import { WelcomePage } from '../welcome/welcome';
-import firebase from 'firebase';
+import { LoginPage } from '../login/login';
+import { HomeGodfatherPage } from '../home-godfather/home-godfather';
+import { HomeGodsonPage } from '../home-godson/home-godson';
 
 /**
  * Generated class for the ProfilePage page.
@@ -18,8 +19,7 @@ import firebase from 'firebase';
   templateUrl: 'profile.html',
 })
 export class ProfilePage {
-  public userProfile: any;
-  public birthDate: any;
+  public currentProfile: any;
   public profilePicture: any;
 
   constructor(public navCtrl: NavController, 
@@ -27,21 +27,25 @@ export class ProfilePage {
     public alertCtrl: AlertController,
     public authProvider: AuthProvider,
     public profileProvider: ProfileProvider,
-    private modalCtrl: ModalController 
-    ) { }
+    private modalCtrl: ModalController
+    ) { 
+
+    }
 
   ionViewDidLoad() {
-    this.profileProvider.getUserProfile().on('value', userProfileSnapshot => {
-      this.userProfile = userProfileSnapshot.val();
-      this.userProfile.uid = userProfileSnapshot.key;
-      this.birthDate = this.userProfile.birthDate
+    this.currentProfile = this.profileProvider.getUserProfileAsync()
+    .then(user => {
+      user.on('value', snap => {
+        this.currentProfile = snap.val();
+        this.currentProfile.uid = snap.key;
+        this.getPhotoURL(this.currentProfile.uid);
+      })
     })
-    this.getPhotoURL();
   }
 
   logOut(): void {
     this.authProvider.logoutUser().then(() => {
-      this.navCtrl.setRoot(WelcomePage);
+      this.navCtrl.setRoot(LoginPage);
     })
   }
 
@@ -52,12 +56,12 @@ export class ProfilePage {
         {
           name: 'firstName',
           placeholder: 'Tus nombres aquí',
-          value: this.userProfile.firstName
+          value: this.currentProfile.firstName
         },
         {
           name: 'lastName',
           placeholder: 'Tu apellidos aquí',
-          value: this.userProfile.lastName
+          value: this.currentProfile.lastName
         }
       ],
       buttons: [
@@ -84,7 +88,7 @@ export class ProfilePage {
         {
           name: 'homeTown',
           placeholder: 'Ciudad aquí',
-          value: this.userProfile.homeTown
+          value: this.currentProfile.homeTown
         }
       ],
       buttons: [
@@ -107,7 +111,7 @@ export class ProfilePage {
         {
           name: 'phone',
           placeholder: 'Teléfono aquí',
-          value: this.userProfile.phone
+          value: this.currentProfile.phone
         }
       ],
       buttons: [
@@ -178,28 +182,33 @@ export class ProfilePage {
     alert.present();
   }
 
-  //BUSCAR ALTERNATIVA CATCH URL
-  getPhotoURL () {
-    console.log(this.userProfile);
-    firebase.storage().ref('profilePictures/' + this.userProfile.uid + '.png').getDownloadURL().then((url) => {
-      this.profilePicture = url;
-    })
-    .catch( error => {
-      firebase.storage().ref('profilePictures/user.png').getDownloadURL().then((url) => {
-        this.profilePicture = url;
+  getPhotoURL(uid) {
+    this.profileProvider.getPhotoURL(uid)
+      .then(snap => {
+        console.log("LOGRADO");
+        this.profilePicture = snap;
       })
-    })
   }
 
   openModalPicture() {
-    const modalPicture: Modal = this.modalCtrl.create('ModalPicturePage', {userProfile: this.userProfile});
+    const modalPicture: Modal = this.modalCtrl.create('ModalPicturePage', {currentProfile: this.currentProfile});
 
     modalPicture.present();
 
     modalPicture.onDidDismiss((newProfilePicture) => {
       console.log(newProfilePicture);
-      this.getPhotoURL();
+      this.getPhotoURL(this.currentProfile.uid);
     })
   }
 
+  returnHome(){
+    console.log(this.currentProfile.type);
+    if (this.currentProfile.type == "ahijado"){
+      this.navCtrl.setRoot(HomeGodsonPage);
+    } else if (this.currentProfile.type == "padrino"){
+      this.navCtrl.setRoot(HomeGodfatherPage);
+    } else if (this.currentProfile.type == "administrator"){
+      this.navCtrl.setRoot(HomeGodfatherPage);
+    }
+  }
 }

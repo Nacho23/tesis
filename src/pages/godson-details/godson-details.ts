@@ -24,6 +24,7 @@ export class GodsonDetailsPage {
   public currentGodson: any = {};
   public profilePicture: any;
   public historyList: Array<any>;
+  public historyNum: any;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
@@ -39,8 +40,10 @@ export class GodsonDetailsPage {
     this.getPhotoURL();
     this.historyProvider.getHistory(this.currentGodson.id).on('value', historySnapshot => {
       this.historyList = [];
+      this.historyNum = 1;
       historySnapshot.forEach(snap => {
         let historyObject = snap.val();
+        historyObject.num = this.historyNum++;
         historyObject.id = snap.key;
         this.historyList.push(historyObject);
         return false;

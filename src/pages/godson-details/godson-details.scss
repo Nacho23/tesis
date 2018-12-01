@@ -5,4 +5,10 @@ page-godson-details {
     .historyCategory{
         font-size: 1rem;
     }
+    ion-scroll[scrollX] {
+        white-space: nowrap;
+        .scroll-item {
+          display: inline-block;
+        }
+    }
 }

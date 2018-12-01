@@ -7,18 +7,16 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Lista de Ahijados</ion-title>
-    <ion-buttons end>
-      <button ion-button icon-only (click)="goToProfile()">
-        <ion-icon name="person"></ion-icon>
-      </button>
-    </ion-buttons>
+    <img ion-right src="assets/imgs/LOGO1.png" class="navbarLogo" />
+    <ion-title>
+      Lista de Ahijados
+    </ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="background-img">
 
   <ion-list>
     <ion-item *ngFor="let godson of godsonList" (click)="goToGodsonDetails(godson.id)">
@@ -30,3 +28,9 @@
   </ion-list>
 
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar text-center>
+    <ion-icon name="home" (click)="returnHome()" class="icon-footer"></ion-icon>
+  </ion-toolbar>
+</ion-footer>

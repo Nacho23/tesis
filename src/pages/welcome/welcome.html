@@ -13,15 +13,24 @@
 </ion-header>
 -->
 
-<ion-content padding id="welcome">
-  <img src="assets/icon/logo.png" class="logo"/>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <h1>Bienvenido Mechón</h1>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+<ion-content padding id="welcome" class="background-img">
+  <img src="assets/imgs/LOGO1.png" class="logo" />
+
+  <!--<ion-card style="background: rgba(111, 191, 194, 0.438); color:steelblue">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <h6>Frase Motivadora o aviso próximo.</h6>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>-->
+
+  <ion-row class="text">
+    <ion-col>
+      <h6><b>FRASE </b> AQUÍ</h6>
+    </ion-col>
+  </ion-row>
 
   <ion-grid>
     <!--<ion-row>
@@ -31,7 +40,7 @@
     </ion-row>-->
     <ion-row>
       <ion-col center text-center>
-        <button ion-button full color="lightText" (click)="login()">Ingresar</button>
+        <button ion-button full style="background: rgb(111, 191, 194);" (click)="in()">Continuar</button>
       </ion-col>
     </ion-row>
   </ion-grid>

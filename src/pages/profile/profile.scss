@@ -1,4 +1,9 @@
 page-profile {
+    *{
+        font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+        font-size: 13px;
+    }
+
     ion-item ion-label {
         margin: 0 !important;
     }
@@ -46,7 +51,78 @@ page-profile {
         max-width: 50% !important;
     }
 
-    img{
-        border-radius: 20%;
+    /*.container-img-profile {
+        width: 150px;
+        height: 150px;
+
+        overflow: hidden;
+        position: fixed;
+
+        border-radius: 10px;
+
+        box-shadow: 2px 2px 5px rgb(99, 99, 99);
+        z-index: 1;
+    }
+
+    .img-profile{
+        position:absolute;
+        left: -100%;
+        right: -100%;
+        top: -100%;
+        bottom: -100%;
+        margin: auto;
+        min-height: 100%;
+        min-width: 100%;
+
+        z-index: 1;
+    }*/
+
+    .img-profile {
+        width: 150px;
+        height: 150px;
+
+        border-radius: 10px;
+        box-shadow: 2px 2px 5px rgb(99,99,99);
+    }
+    
+    .margin-box {
+        margin:12px;
+    }
+
+    .navbarLogo {
+        width: 50px;
+    }
+
+    ion-title{
+        float: right;
+        margin-top: 6px; 
+    }
+
+    .toolbar-title-md {
+        color: rgb(64, 143, 146);
+    }
+
+    .icon-footer{
+        font-size: 50px;
+        color: rgb(64, 143, 146);
+    }
+
+    .toolbar-background-md{
+        background: transparent;
+    }
+
+    .body-profile ion-item {
+        background-color: transparent;
+    }
+
+
+    .background-img {
+        background-image: url('../../assets/imgs/profile-background-1.png');
+        -webkit-background-size: 100%;
+        -moz-background-size: 100%;
+        background-size: 100%;
     }
 }
+
+
+

@@ -6,11 +6,11 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { Camera } from '@ionic-native/camera'
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+import { HomeGodfatherPage } from '../pages/home-godfather/home-godfather';
+import { HomeGodsonPage } from '../pages/home-godson/home-godson';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { LoginPage } from '../pages/login/login';
-//import { SignupPage } from '../pages/signup/signup';
-import { TabsPage } from '../pages/tabs/tabs';
+import { ProfilePage } from '../pages/profile/profile';
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { ListGodsonPage } from '../pages/list-godson/list-godson';
@@ -21,20 +21,24 @@ import { AuthProvider } from '../providers/auth/auth';
 import { ProfileProvider } from '../providers/profile/profile';
 import { GodsonProvider } from '../providers/godson/godson';
 import { HistoryProvider } from '../providers/history/history';
+import { QuestionsPage } from '../pages/questions/questions';
+import { QuestionProvider } from '../providers/question/question';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
+    HomeGodfatherPage,
+    HomeGodsonPage,
     WelcomePage,
     LoginPage,
-    TabsPage,
+    ProfilePage,
     ContactPage,
     AboutPage,
     ListGodsonPage,
     GodsonDetailsPage,
     MessagePage,
-    HistoryPage
+    HistoryPage,
+    QuestionsPage
   ],
   imports: [
     BrowserModule,
@@ -43,16 +47,18 @@ import { HistoryProvider } from '../providers/history/history';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
+    HomeGodfatherPage,
+    HomeGodsonPage,
     WelcomePage,
     LoginPage,
-    TabsPage,
+    ProfilePage,
     ContactPage,
     AboutPage,
     ListGodsonPage,
     GodsonDetailsPage,
     MessagePage,
-    HistoryPage
+    HistoryPage,
+    QuestionsPage
   ],
   providers: [
     StatusBar,
@@ -62,7 +68,8 @@ import { HistoryProvider } from '../providers/history/history';
     ProfileProvider,
     GodsonProvider,
     Camera,
-    HistoryProvider
+    HistoryProvider,
+    QuestionProvider
   ]
 })
 export class AppModule {}

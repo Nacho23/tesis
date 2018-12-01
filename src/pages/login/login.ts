@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, Loading, LoadingController, AlertController, Alert} from 'ionic-angular';
+import { IonicPage, NavController, Loading, LoadingController, AlertController, Alert } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmailValidator } from '../../validators/email';
 import { AuthProvider } from '../../providers/auth/auth';
 //import { ResetPasswordPage } from '../reset-password/reset-password';
-import { ListGodsonPage } from '../list-godson/list-godson';
 import { ProfileProvider } from '../../providers/profile/profile';
-import { HomePage } from '../home/home';
+import { HomeGodfatherPage } from '../home-godfather/home-godfather';
+import { HomeGodsonPage } from '../home-godson/home-godson';
 
 /**
  * Generated class for the LoginPage page.
@@ -24,7 +24,7 @@ export class LoginPage {
   public loginForm: FormGroup;
   public loading: Loading;
 
-  constructor(public navCtrl: NavController, 
+  constructor(public navCtrl: NavController,
     public alertCtrl: AlertController,
     public loadingCtrl: LoadingController,
     public authProvider: AuthProvider,
@@ -52,7 +52,7 @@ export class LoginPage {
   }
 
   loginUser(): void {
-    if(!this.loginForm.valid) {
+    if (!this.loginForm.valid) {
       console.log(`Form is not valid yet, current value: ${this.loginForm.value}`);
     } else {
       const email = this.loginForm.value.email;
@@ -63,12 +63,12 @@ export class LoginPage {
           this.profileProvider.getUserProfileByUid(authData.uid).once('value').then(snapShot => {
             this.loading.dismiss().then(() => {
               let type = snapShot.val().type;
-              if(type == "padrino"){
-                this.navCtrl.setRoot(ListGodsonPage);
-              } else if (type == "ahijado"){
-                this.navCtrl.setRoot(HomePage);
+              if (type == "padrino") {
+                this.navCtrl.setRoot(HomeGodfatherPage);
+              } else if (type == "ahijado") {
+                this.navCtrl.setRoot(HomeGodsonPage);
               } else {
-                this.navCtrl.setRoot(ListGodsonPage);
+                this.navCtrl.setRoot(HomeGodfatherPage);
               }
             })
           });
@@ -77,7 +77,7 @@ export class LoginPage {
           this.loading.dismiss().then(() => {
             const alert: Alert = this.alertCtrl.create({
               message: error.message,
-              buttons: [{text: 'OK', role: 'cancel'}]
+              buttons: [{ text: 'OK', role: 'cancel' }]
             });
             alert.present();
           });

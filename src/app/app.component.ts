@@ -4,17 +4,15 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import firebase from 'firebase';
 import { firebaseConfig } from './credentials';
-
-//import { HomePage } from '../pages/home/home';
 import { WelcomePage } from '../pages/welcome/welcome';
-import { ListGodsonPage } from '../pages/list-godson/list-godson';
+import { LoginPage } from '../pages/login/login';
 
 @Component({
   templateUrl: 'app.html'
 })
 
 export class MyApp {
-  rootPage:any; //Initial page
+  rootPage:any; //Initial page  
   public userProfile:any;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
@@ -27,13 +25,13 @@ export class MyApp {
 
     firebase.initializeApp(firebaseConfig);
 
-    //Modificar depende del tipo de usuario (padrino|ahijado) entra a distinta pagina
     const unsubscribe = firebase.auth().onAuthStateChanged(user => {
+      console.log(user);
       if(!user){
-        this.rootPage = WelcomePage;
+        this.rootPage = LoginPage;
         unsubscribe();
-      } else {
-        this.rootPage = ListGodsonPage;
+      } else {  
+        this.rootPage = WelcomePage;
         unsubscribe();
       }
     });

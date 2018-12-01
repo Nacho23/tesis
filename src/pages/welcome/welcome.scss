@@ -1,6 +1,5 @@
 page-welcome {
     #welcome{
-        background: color($colors, energy);
         h1{
             font-size: 52px;
             margin-top: 50px;       
@@ -10,6 +9,25 @@ page-welcome {
         }
         .logo{
             height: 100px;
+            margin-top: 30%;
         }
+
+        h6{
+            font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+            font-size: 30px;
+            font-style: normal;
+            font-variant: normal;
+            font-weight: 400;
+            line-height: 33px;
+            margin-top: 50px;
+            text-align: left;
+        }
+    }
+
+    .background-img {
+        background-image: url('../../assets/imgs/welcome-background-1.png');
+        -webkit-background-size: 100%;
+        -moz-background-size: 100%;
+        background-size: 100%;
     }
 }

@@ -1,0 +1,143 @@
+<ion-header>
+
+  <ion-navbar>
+    <img ion-right src="assets/imgs/LOGO1.png" class="navbarLogo" />
+    <ion-title>
+      Contacto
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content padding class="background-img">
+  <ion-slides pager>
+
+    <ion-slide *ngFor="let question of questionList">
+
+      <div *ngIf="question.type == 'short'">
+        <ion-card>
+          <ion-list>
+            <ion-list-header>
+              {{question.title}}
+            </ion-list-header>
+            <ion-item>
+              <ion-textarea placeholder="Enter a description" [(ngModel)]="question.answer"></ion-textarea>
+            </ion-item>
+          </ion-list>
+        </ion-card>
+        <button ion-button class="btn-primary" (click)="saveAnswerd(question.uid, question.answer, question.title);">Continuar
+          <ion-icon name="hand"></ion-icon></button>
+      </div>
+
+      <div *ngIf="question.type == 'long'">
+        <ion-card>
+          <ion-list>
+            <ion-list-header>
+              {{question.title}}
+            </ion-list-header>
+            <ion-item>
+              <ion-textarea placeholder="Enter a description" [(ngModel)]="question.answer"></ion-textarea>
+            </ion-item>
+          </ion-list>
+        </ion-card>
+        <button ion-button class="btn-primary" (click)="saveAnswerd(question.uid, question.answer, question.title);">Continuar
+          <ion-icon name="arrow-round-forward"></ion-icon></button>
+      </div>
+
+      <div *ngIf="question.type == 'multiple'">
+        <ion-card>
+          <ion-list>
+            <ion-list-header>
+              {{question.title}}
+            </ion-list-header>
+            <ion-list radio-group [(ngModel)]="question.answer">
+              <ion-item *ngFor="let option of question.options">
+                <ion-label>{{option}}</ion-label>
+                <ion-radio value="{{option}}"></ion-radio>
+              </ion-item>
+            </ion-list>
+          </ion-list>
+        </ion-card>
+        <button ion-button class="btn-primary" (click)="saveAnswerd(question.uid, question.answer, question.title);">Continuar
+          <ion-icon name="arrow-round-forward"></ion-icon></button>
+      </div>
+
+
+      <div *ngIf="question.type == 'box'">
+        <ion-card>
+          <ion-list>
+            <ion-list-header>
+              {{question.title}}
+            </ion-list-header>
+            <ion-list>
+              <ion-item *ngFor="let option of question.options">
+                <ion-label>{{option}}</ion-label>
+                <ion-checkbox value="option[option]"></ion-checkbox>
+              </ion-item>
+            </ion-list>
+          </ion-list>
+        </ion-card>
+        <button ion-button class="btn-primary" (click)="saveAnswerd(question.uid, option, question.title);">Continuar
+          <ion-icon name="arrow-round-forward"></ion-icon></button>
+      </div>
+
+      <div *ngIf="question.type == 'list'">
+        <ion-card>
+          <ion-list>
+            <ion-list-header>
+              {{question.title}}
+            </ion-list-header>
+            <ion-item>
+              <ion-label>Respuesta</ion-label>
+              <ion-select [(ngModel)]="question.answer">
+                <ion-option *ngFor="let option of question.options" value="{{option}}">{{option}}</ion-option>
+                <!--*ngFor="let option of question.options" -->
+              </ion-select>
+            </ion-item>
+          </ion-list>
+        </ion-card>
+        <button ion-button class="btn-primary" (click)="saveAnswerd(question.uid, question.answer, question.title);">Continuar
+          <ion-icon name="arrow-round-forward"></ion-icon></button>
+      </div>
+
+      <div *ngIf="question.type == 'scale'">
+        <ion-card>
+          <ion-list>
+            <ion-list-header>
+              {{question.title}}
+            </ion-list-header>
+            <ion-item>
+              <ion-icon name="redo" item-start></ion-icon>
+              Respuesta
+              <ion-badge item-end>{{question.answer}}</ion-badge>
+            </ion-item>
+            <ion-item>
+              <ion-range min="{{question.min}}" max="{{question.max}}" [(ngModel)]="question.answer" color="secondary">
+                <ion-icon small range-left name="sunny"></ion-icon>
+                <ion-icon range-right name="sunny"></ion-icon>
+              </ion-range>
+            </ion-item>
+          </ion-list>
+        </ion-card>
+        <ion-card>
+          <ion-card-header>
+            Significados
+          </ion-card-header>
+          <ion-card-content>
+            <ion-item>{{question.min}}: {{question.labelMin}}</ion-item>
+            <ion-item>{{question.max}}: {{question.labelMax}}</ion-item>
+          </ion-card-content>
+        </ion-card>
+        <button ion-button class="btn-primary" (click)="saveAnswerd(question.uid, question.answer, question.title);">Continuar
+          <ion-icon name="arrow-round-forward"></ion-icon></button>
+      </div>
+
+    </ion-slide>
+
+  </ion-slides>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar text-center>
+    <ion-icon name="md-home" (click)="returnHome()" class="icon-footer"></ion-icon>
+  </ion-toolbar>
+</ion-footer>

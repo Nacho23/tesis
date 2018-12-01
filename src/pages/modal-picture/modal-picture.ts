@@ -20,7 +20,7 @@ declare var window: any;
 })
 export class ModalPicturePage {
   public profilePicture: any;
-  public userProfile: any;
+  public currentProfile: any;
   public picData: any;
   public picRef: any;
 
@@ -49,20 +49,17 @@ export class ModalPicturePage {
   }
 
   ionViewDidLoad() {
-    this.userProfile = this.navParams.get('userProfile');
-    this.getPhotoURL();
+    this.currentProfile = this.navParams.get('currentProfile');
+    this.getPhotoURL(this.currentProfile.uid);
   }
 
   /*Metodos Camra*/
-  getPhotoURL () {
-    firebase.storage().ref('profilePictures/' + this.userProfile.uid + '.png').getDownloadURL().then((url) => {
-      this.profilePicture = url;
-    })
-    .catch( error => {
-      firebase.storage().ref('profilePictures/user.png').getDownloadURL().then((url) => {
-        this.profilePicture = url;
+  getPhotoURL(uid) {
+    this.profileProvider.getPhotoURL(uid)
+      .then(snap => {
+        console.log("LOGRADO");
+        this.profilePicture = snap;
       })
-    })
   }
 
   takePicture() {
@@ -80,7 +77,7 @@ export class ModalPicturePage {
       content: "Please Wait..."
     });
     loading.present();
-    this.picRef.child(this.uid()).child(this.userProfile.uid + '.png')
+    this.picRef.child(this.uid()).child(this.currentProfile.uid + '.png')
     .putString(this.picData, 'base64', {contentType: 'image/png'})
     .then(savePic => {
       this.profilePicture = savePic.downloadURL;
@@ -125,7 +122,7 @@ export class ModalPicturePage {
       content: "Please Wait..."
     });
     loading.present();
-    this.FbREF.child('profilePictures/'+this.userProfile.uid+'.png').put(blob)
+    this.FbREF.child('profilePictures/'+this.currentProfile.uid+'.png').put(blob)
     .then(picture => {
       this.profilePicture = picture.downloadURL;
       loading.dismiss();

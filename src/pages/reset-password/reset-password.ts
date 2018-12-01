@@ -34,7 +34,6 @@ export class ResetPasswordPage {
   }
 
   resetPassword(): void {
-    console.log("HOLA");
     if(!this.resetPasswordForm.valid){
       console.log(`Form is not valid yet, current value: ${this.resetPasswordForm.value}`);
     } else {

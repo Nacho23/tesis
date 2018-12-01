@@ -20,11 +20,9 @@
   </ion-item>
 
   <ion-item>
-    <ion-label>Operating System</ion-label>
+    <ion-label>Categoría</ion-label>
     <ion-select [(ngModel)]="category" submitText="Seleccionar" cancelText="Cancelar">
-      <ion-option value="familiar">Familiar</ion-option>
-      <ion-option value="socioeconomico">Socioeconómico</ion-option>
-      <ion-option value="academico">Académico</ion-option>
+      <ion-option value="{{category.category}}" *ngFor="let category of categoryList">{{category.category}}</ion-option>
     </ion-select>
   </ion-item>
 

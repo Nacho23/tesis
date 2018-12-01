@@ -7,102 +7,233 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Perfil</ion-title>
-    <ion-buttons end>
-      <button ion-button icon-only (click)="logOut()">
-        <ion-icon name="log-out"></ion-icon>
-      </button>
-    </ion-buttons>
+    <img ion-right src="assets/imgs/LOGO1.png" class="navbarLogo" />
+    <ion-title>
+      Información Personal
+    </ion-title>
   </ion-navbar>
 
 </ion-header>
 
+<ion-content padding class="background-img">
+  <br>
+  <br>
+  <br>
+  <ion-grid>
+    <ion-row>
+      <ion-col offset-3>
+        <a (click)="openModalPicture()">
+          <div class="container-img-profile">
+            <img src="{{profilePicture}}" class="img-profile">
+          </div>
+        </a>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
-<ion-content padding>
-  <ion-list>
-    <ion-list-header>
-      Información Personal
-    </ion-list-header>
+  <ion-grid class="body-profile">
+    <ion-item (click)="updateName()">
+      <ion-grid>
+        <ion-row>
+          <ion-col offset-3 col-3 items-center *ngIf="currentProfile?.firstName || currentProfile?.lastName">
+            <h2>{{currentProfile?.firstName}} {{currentProfile?.lastName}}</h2>
+          </ion-col>
+          <ion-col col-6 class="placeholder-profile" *ngIf="!currentProfile?.firstName">
+            <span>Click aquí para editar. </span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+
+    <hr>
 
     <ion-row>
-      <ion-col col-2>
-        <a (click)="openModalPicture()"><img src="{{profilePicture}}"></a>
-      </ion-col>
-      <ion-col>
+      <ion-item>
+        <ion-label class="dob-label">Fecha de Nacimiento</ion-label>
+        <ion-datetime displayFormat="MMM D, YYYY" pickerFormat="D MMM YYYY" [(ngModel)]=" birthDate" (ionChange)="updateDOB(birthDate)"></ion-datetime>
+      </ion-item>
+
+      <ion-item (click)="updateHometown()">
+        <ion-grid>
+          <ion-row>
+            <ion-col col-6> Ciudad de Origen </ion-col>
+            <ion-col col-6 *ngIf="currentProfile?.homeTown">
+              {{currentProfile?.homeTown}}
+            </ion-col>
+            <ion-col col-6 class="placeholder-profile" *ngIf="!currentProfile?.homeTown">
+              <span> Click aquí para editar. </span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+
+      <ion-item (click)="updatePhone()">
+        <ion-grid>
+          <ion-row>
+            <ion-col col-6> Teléfono </ion-col>
+            <ion-col col-6 *ngIf="currentProfile?.phone">
+              {{currentProfile?.phone}}
+            </ion-col>
+            <ion-col col-6 class="placeholder-profile" *ngIf="!currentProfile?.phone">
+              <span> Click aquí para editar. </span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+
+      <ion-item (click)="updateEmail()">
+        <ion-grid>
+          <ion-row>
+            <ion-col col-6> Email </ion-col>
+            <ion-col col-6 *ngIf="currentProfile?.email">
+              {{currentProfile?.email}}
+            </ion-col>
+            <ion-col col-6 class="placeholder-profile" *ngIf="!currentProfile?.email">
+              <span> Click aquí para editar. </span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+
+      <ion-item (click)="updatePassword()">
+        <ion-grid>
+          <ion-row>
+            <ion-col col-6> Contraseña </ion-col>
+            <ion-col col-6 class="placeholder-profile">
+              <span> Click aquí para editar. </span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+
+      <ion-item (click)="updatePassword()">
+        <ion-grid>
+          <ion-row>
+            <ion-col col-6> Contraseña </ion-col>
+            <ion-col col-6 class="placeholder-profile">
+              <span> Click aquí para editar. </span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+
+      <ion-item (click)="updatePassword()">
+        <ion-grid>
+          <ion-row>
+            <ion-col col-6> Contraseña </ion-col>
+            <ion-col col-6 class="placeholder-profile">
+              <span> Click aquí para editar. </span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+
+    </ion-row>
+  </ion-grid>
+
+  <button ion-button style="background: rgb(204, 134, 134); margin: 5%; width: 90%" (click)="logOut()">Cerrar Sesión</button>
+  <!--<ion-card style="margin-top: 90px; background: rgb(234,229,224)">
+
+
+    <ion-list>
+      <ion-card>
+        <ion-row>
+          <ion-col col-2>
+            <a (click)="openModalPicture()">
+              <img src="{{profilePicture}}">
+            </a>
+          </ion-col>
+          <ion-col>
             <ion-item (click)="updateName()">
               <ion-grid>
                 <ion-row>
-                  <ion-col col-6 *ngIf="userProfile?.firstName || userProfile?.lastName">
-                    <h2>{{userProfile?.firstName}} {{userProfile?.lastName}}</h2>
+                  <ion-col col-6 *ngIf="currentProfile?.firstName || currentProfile?.lastName">
+                    <h2>{{currentProfile?.firstName}}</h2>
                   </ion-col>
-                  <ion-col col-6 class="placeholder-profile" *ngIf="!userProfile?.firstName">
+                  <ion-col col-6 class="placeholder-profile" *ngIf="!currentProfile?.firstName">
                     <span>Click aquí para editar. </span>
                   </ion-col>
                 </ion-row>
               </ion-grid>
             </ion-item>
-      </ion-col>
-    </ion-row>
-
-    <hr>
-
-    <ion-item>
-      <ion-label class="dob-label">Fecha de Nacimiento</ion-label>
-      <ion-datetime displayFormat="MMM D, YYYY" pickerFormat="D MMM YYYY" 
-      [(ngModel)]="birthDate" (ionChange)="updateDOB(birthDate)"></ion-datetime>
-    </ion-item>
-
-    <ion-item (click)="updateHometown()">
-      <ion-grid>
-        <ion-row>
-          <ion-col col-6> Ciudad de Origen </ion-col>
-          <ion-col col-6 *ngIf="userProfile?.homeTown">
-            {{userProfile?.homeTown}}
-          </ion-col>
-          <ion-col col-6 class="placeholder-profile" *ngIf="!userProfile?.homeTown">
-            <span> Click aquí para editar. </span>
           </ion-col>
         </ion-row>
-      </ion-grid>
-    </ion-item>
+      </ion-card>
 
-    <ion-item (click)="updatePhone()">
-      <ion-grid>
-        <ion-row>
-          <ion-col col-6> Teléfono </ion-col>
-          <ion-col col-6 *ngIf="userProfile?.phone">
-            {{userProfile?.phone}}
-          </ion-col>
-          <ion-col col-6 class="placeholder-profile" *ngIf="!userProfile?.phone">
-            <span> Click aquí para editar. </span>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
+      <hr>
 
-    <ion-item (click)="updateEmail()">
-      <ion-grid>
-        <ion-row>
-          <ion-col col-6> Email </ion-col>
-          <ion-col col-6 *ngIf="userProfile?.email">
-            {{userProfile?.email}}
-          </ion-col>
-          <ion-col col-6 class="placeholder-profile" *ngIf="!userProfile?.email">
-            <span> Click aquí para editar. </span>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
+      <ion-card>
+        <ion-item>
+          <ion-label class="dob-label">Fecha de Nacimiento</ion-label>
+          <ion-datetime displayFormat="MMM D, YYYY" pickerFormat="D MMM YYYY" [(ngModel)]=" birthDate" (ionChange)="updateDOB(birthDate)"></ion-datetime>
+        </ion-item>
 
-    <ion-item (click)="updatePassword()">
-      <ion-grid>
-        <ion-row>
-          <ion-col col-6> Contraseña </ion-col>
-          <ion-col col-6 class="placeholder-profile">
-            <span> Click aquí para editar. </span>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
-  </ion-list>
+
+        <ion-item (click)="updateHometown()">
+          <ion-grid>
+            <ion-row>
+              <ion-col col-6> Ciudad de Origen </ion-col>
+              <ion-col col-6 *ngIf="currentProfile?.homeTown">
+                {{currentProfile?.homeTown}}
+              </ion-col>
+              <ion-col col-6 class="placeholder-profile" *ngIf="!currentProfile?.homeTown">
+                <span> Click aquí para editar. </span>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+
+
+        <ion-item (click)="updatePhone()">
+          <ion-grid>
+            <ion-row>
+              <ion-col col-6> Teléfono </ion-col>
+              <ion-col col-6 *ngIf="currentProfile?.phone">
+                {{currentProfile?.phone}}
+              </ion-col>
+              <ion-col col-6 class="placeholder-profile" *ngIf="!currentProfile?.phone">
+                <span> Click aquí para editar. </span>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+
+        <ion-item (click)="updateEmail()">
+          <ion-grid>
+            <ion-row>
+              <ion-col col-6> Email </ion-col>
+              <ion-col col-6 *ngIf="currentProfile?.email">
+                {{currentProfile?.email}}
+              </ion-col>
+              <ion-col col-6 class="placeholder-profile" *ngIf="!currentProfile?.email">
+                <span> Click aquí para editar. </span>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+
+        <ion-item (click)="updatePassword()">
+          <ion-grid>
+            <ion-row>
+              <ion-col col-6> Contraseña </ion-col>
+              <ion-col col-6 class="placeholder-profile">
+                <span> Click aquí para editar. </span>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+      </ion-card>
+
+    </ion-list>
+
+    <button ion-button style="background: rgb(144,204,134); margin: 5%; width: 90%">Cerrar Sesión</button>
+
+
+  </ion-card>-->
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar text-center>
+    <ion-icon name="home" (click)="returnHome()" class="icon-footer"></ion-icon>
+  </ion-toolbar>
+</ion-footer>

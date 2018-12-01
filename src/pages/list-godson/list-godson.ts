@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { GodsonDetailsPage } from '../godson-details/godson-details';
 import { GodsonProvider } from '../../providers/godson/godson';
 import { ProfileProvider } from '../../providers/profile/profile'
+import { HomeGodfatherPage } from '../home-godfather/home-godfather';
 
 /**
  * Generated class for the ListGodsonPage page.
@@ -20,8 +21,8 @@ export class ListGodsonPage {
 
   public godsonList: Array<any>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, 
-    public godsonProvider:GodsonProvider, public profileProvider: ProfileProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    public godsonProvider: GodsonProvider, public profileProvider: ProfileProvider) {
   }
 
   ionViewDidLoad() {
@@ -41,13 +42,17 @@ export class ListGodsonPage {
     this.navCtrl.push(GodsonDetailsPage, { godsonId: godsonId });
   }
 
-  openSelection(){
-    
-    this.navCtrl.push(GodsonDetailsPage, {}, {animate: false});
+  openSelection() {
+
+    this.navCtrl.push(GodsonDetailsPage, {}, { animate: false });
   }
 
-  goToProfile(){
+  goToProfile() {
     this.navCtrl.push("ProfilePage");
+  }
+
+  returnHome() {
+    this.navCtrl.setRoot(HomeGodfatherPage);
   }
 
 }
