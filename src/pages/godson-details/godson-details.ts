@@ -13,9 +13,9 @@ import { HistoryProvider } from '../../providers/history/history';
  * Ionic pages and navigation.
  */
 
-@IonicPage({
+/*@IonicPage({
   segment: 'godson-details/:godsonId'
-})
+})*/
 @Component({
   selector: 'page-godson-details',
   templateUrl: 'godson-details.html',

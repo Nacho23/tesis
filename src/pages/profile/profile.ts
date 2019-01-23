@@ -13,7 +13,6 @@ import { HomeGodsonPage } from '../home-godson/home-godson';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-profile',
   templateUrl: 'profile.html',

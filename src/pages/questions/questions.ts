@@ -13,7 +13,6 @@ import { hasLifecycleHook } from '@angular/compiler/src/lifecycle_reflector';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-questions',
   templateUrl: 'questions.html',
@@ -43,7 +42,7 @@ export class QuestionsPage implements OnInit {
       })
 
     let date_aux = new Date();
-    let date = date_aux.getFullYear() + '-' + (date_aux.getMonth() + 1) + '-' + date_aux.getDate();
+    let date = date_aux.getFullYear() + '-' + ('0' + (date_aux.getMonth() + 1)).slice(-2) + '-' + date_aux.getDate();
     this.questionProvider.getAnswered().orderByChild('date').equalTo(date).on('value', snap => {
       this.answerList = [];
       snap.forEach(snapChild => {
@@ -71,11 +70,7 @@ export class QuestionsPage implements OnInit {
           let i = 0;
           while (exist && i < this.questionList_aux.length) {
             let date_aux = new Date();
-            let date_day = date_aux.getDate().toString();
-            if (date_aux.getDate() < 10 && date_aux.getDate() >= 0) {
-              date_day = "0" + date_aux.getDate();
-            }
-            let date = date_aux.getFullYear() + '-' + (date_aux.getMonth() + 1) + '-' + date_day;
+            let date = date_aux.getFullYear() + '-' + ('0' + (date_aux.getMonth() + 1)).slice(-2) + '-' + date_aux.getDate();
             if (date == this.questionList_aux[i]) {
               console.log("EXISTE: " + this.questionList_aux[i]);
               let questionObj = snapChild.val();

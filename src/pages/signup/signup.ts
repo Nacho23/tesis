@@ -12,7 +12,6 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { EmailValidator } from '../../validators/email';
 import { ListGodsonPage } from '../list-godson/list-godson';
 
-@IonicPage()
 @Component({
   selector: 'page-signup',
   templateUrl: 'signup.html'

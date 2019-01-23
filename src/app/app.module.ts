@@ -10,7 +10,10 @@ import { HomeGodfatherPage } from '../pages/home-godfather/home-godfather';
 import { HomeGodsonPage } from '../pages/home-godson/home-godson';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { LoginPage } from '../pages/login/login';
+import { SignupPage } from '../pages/signup/signup';
+import { ResetPasswordPage } from '../pages/reset-password/reset-password';
 import { ProfilePage } from '../pages/profile/profile';
+import { ModalPicturePage } from '../pages/modal-picture/modal-picture';
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { ListGodsonPage } from '../pages/list-godson/list-godson';
@@ -31,7 +34,10 @@ import { QuestionProvider } from '../providers/question/question';
     HomeGodsonPage,
     WelcomePage,
     LoginPage,
+    SignupPage,
+    ResetPasswordPage,
     ProfilePage,
+    ModalPicturePage,
     ContactPage,
     AboutPage,
     ListGodsonPage,
@@ -51,7 +57,10 @@ import { QuestionProvider } from '../providers/question/question';
     HomeGodsonPage,
     WelcomePage,
     LoginPage,
+    SignupPage,
+    ResetPasswordPage,
     ProfilePage,
+    ModalPicturePage,
     ContactPage,
     AboutPage,
     ListGodsonPage,

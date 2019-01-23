@@ -14,7 +14,6 @@ import { HomeGodfatherPage } from '../home-godfather/home-godfather';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-contact',
   templateUrl: 'contact.html',

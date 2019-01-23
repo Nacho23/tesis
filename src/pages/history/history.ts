@@ -10,7 +10,6 @@ import { ProfileProvider } from '../../providers/profile/profile';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-history',
   templateUrl: 'history.html',

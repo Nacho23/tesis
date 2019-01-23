@@ -13,7 +13,6 @@ declare var window: any;
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-modal-picture',
   templateUrl: 'modal-picture.html',

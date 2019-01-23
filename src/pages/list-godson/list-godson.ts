@@ -12,7 +12,6 @@ import { HomeGodfatherPage } from '../home-godfather/home-godfather';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-list-godson',
   templateUrl: 'list-godson.html',
